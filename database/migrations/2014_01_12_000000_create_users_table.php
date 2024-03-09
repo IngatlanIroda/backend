@@ -20,8 +20,7 @@ return new class extends Migration
             $table->foreignId('jogosultsag')
                 ->references('j_id')
                 ->on('jogosultsags')->default(1); 
-            $table->string('felhaszn_nev', 30)->unique();
-            $table->boolean('aktiv')->default(1);
+            $table->boolean('aktiv')->default(true);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

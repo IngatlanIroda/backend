@@ -22,7 +22,6 @@ class User extends Authenticatable
         'name',
         'szul_ido',
         'jogosultsag',
-        'felhaszn_nev',
         'aktiv',
         'email',
         'password'

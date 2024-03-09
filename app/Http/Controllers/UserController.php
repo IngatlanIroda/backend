@@ -48,7 +48,6 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->szul_ido = $request->szul_ido;
         $user->jogosultsag =$request->jogosultsag;
-        $user->felhaszn_nev = $request->felhaszn_nev;
         $user->aktiv = $request->aktiv;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
