@@ -39,3 +39,5 @@ Route::get('/jogosultsags',[JogosultsagController::class, 'index']);
 
 Route::get('/ingfutestipus',[IngatlanFutesTipusController::class, 'index']);
 
+//lekérdezések:
+Route::get('/ingatlanKartyaLista',[IngatlanController::class, 'ingatlanKartya']);

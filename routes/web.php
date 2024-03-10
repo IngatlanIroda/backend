@@ -33,4 +33,8 @@ Route::middleware('auth.basic')->group(function () {
 
 }); 
 Route::get('/ingatlans', [IngatlanController::class, 'index']);
+//lekérdezések:
+Route::get('/ingatlanKartyaLista',[IngatlanController::class, 'ingatlanKartya']);
+
+
 require __DIR__.'/auth.php';

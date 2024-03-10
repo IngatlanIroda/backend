@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingatlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IngatlanController extends Controller
 {
@@ -39,5 +40,13 @@ class IngatlanController extends Controller
         $ingatlan->save();
     }
 
-    
+    public function ingatlanKartya()
+{
+    $kartyaList = DB::table('ingatlans' )
+    ->select ('ing_id','telepules_megnevezes', 'kategoria','tipus_megnevezes', 'nagysag','szobaszam', 'leiras', 'cim','erkely','terasz','kert')
+    ->join('ingatlan_futes_tipuses', 'ing_tipus', '=','tipus_id')
+    ->join ('telepules', 'telepules','=','telepules_id')
+    ->get();
+    return $kartyaList;
+}
 }
