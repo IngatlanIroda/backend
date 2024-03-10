@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IngatlanController;
 use App\Http\Controllers\JogosultsagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,5 @@ Route::middleware('auth.basic')->group(function () {
 
 
 }); 
-
+Route::get('/ingatlans', [IngatlanController::class, 'index']);
 require __DIR__.'/auth.php';

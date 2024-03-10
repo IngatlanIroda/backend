@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Telepules::factory(10)->create();
        \App\Models\Ingatlan_futes_tipus::factory(10)->create();
         \App\Models\Ingatlan::factory(10)->create();
+       // \App\Models\Jogosultsag::factory(10)->create();
        \App\Models\User::factory(10)->create();
-        
+      
     } 
 }

@@ -17,7 +17,7 @@ class JogosultsagFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'j_megnevezes'=> "guest",
         ];
     }
 }

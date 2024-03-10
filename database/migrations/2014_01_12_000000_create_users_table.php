@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('name');
-            $table->date('szul_ido');
+            $table->date('szul_ido')->default(null);
             $table->foreignId('jogosultsag')
                 ->references('j_id')
-                ->on('jogosultsags')->default(1); 
+                ->on('jogosultsags'); 
             $table->boolean('aktiv')->default(true);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('jogosultsags', function (Blueprint $table) {
             $table->id('j_id');
-            $table->string('j_megnevezes',30);
+            $table->string('j_megnevezes', 10);
             $table->timestamps();
         });
         Jogosultsag::create([
@@ -22,6 +22,9 @@ return new class extends Migration
         ]);
         Jogosultsag::create([
             'j_megnevezes'=>'registered'
+        ]);
+        Jogosultsag::create([
+            'j_megnevezes'=>'g'
         ]);
     }
 
