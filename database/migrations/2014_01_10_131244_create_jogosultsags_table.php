@@ -24,7 +24,7 @@ return new class extends Migration
             'j_megnevezes'=>'registered'
         ]);
         Jogosultsag::create([
-            'j_megnevezes'=>'g'
+            'j_megnevezes'=>'guest'
         ]);
     }
 

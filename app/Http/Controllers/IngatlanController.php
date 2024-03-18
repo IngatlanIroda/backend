@@ -20,7 +20,11 @@ class IngatlanController extends Controller
 
     public function show($ing_id, $tipus_id, $telepules_id)
     {
-        $ingatlan = Ingatlan::where('ing_id', $ing_id)->where('ing_tipus_id', $tipus_id)->where('futes_tipus_id', $tipus_id)->where('telepules_id', $telepules_id)->get();
+        $ingatlan = Ingatlan::where('ing_id', $ing_id)
+        ->where('ing_tipus_id', $tipus_id)
+        ->where('futes_tipus_id', $tipus_id)
+        ->where('telepules', $telepules_id)
+        ->get();
         return $ingatlan[0];
     }
     public function destroy($ing_id, $tipus_id, $telepules_id)

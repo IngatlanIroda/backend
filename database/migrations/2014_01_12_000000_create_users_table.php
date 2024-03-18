@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('szul_ido')->nullable();
             $table->foreignId('jogosultsag')
                 ->references('j_id')
-                ->on('jogosultsags'); 
+                ->on('jogosultsags')->default(1);
             $table->boolean('aktiv')->default(true);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -28,27 +28,26 @@ return new class extends Migration
             $table->timestamps();
         });
         User::create([
-            'name' => 'Alexa', 
-            'szul_ido'=>'1998-03-12',
-            'jogosultsag'=>'1',
-            'felhaszn_nev'=>'Alexa',
-            'aktiv' =>true,
-            'email' => 'alexa@gmail.com', 
+            'name' => 'Alexa',
+            'szul_ido' => '1998-03-12',
+            'jogosultsag' => '1',
+
+            'aktiv' => true,
+            'email' => 'alexa@gmail.com',
             'password' => Hash::make('blabla'),
-            
+
         ]);
-    
+
         User::create([
-            'name' => 'Bea', 
-            'szul_ido'=>'1998-01-01',
-            'jogosultsag'=>'1',
-            'felhaszn_nev'=>'Bea',
-            'aktiv' =>true,
-            'email' => 'teszt@gmail.com', 
+            'name' => 'Bea',
+            'szul_ido' => '1998-01-01',
+            'jogosultsag' => '1',
+
+            'aktiv' => true,
+            'email' => 'teszt@gmail.com',
             'password' => Hash::make('blabla'),
-            
+
         ]);
-    
     }
 
     /**

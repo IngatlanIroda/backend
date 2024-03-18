@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -14,44 +15,58 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-      $user = new User();
-      $user ->user_id=$request->user_id;
-      $user->name = $request->name;
-      $user->szul_ido = $request->szul_ido;
-      $user->jogosultsag =$request->jogosultsag;
-      $user->felhaszn_nev = $request->felhaszn_nev;
-      $user->aktiv = $request->aktiv;
-      $user->email = $request->email;
-      $user->password = Hash::make($request->password);
-      $user->save();
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'szul_ido' => 'required|date_format:Y_m_d',
+            'jogosultsag' => 'required|in:1,2',
+            'aktiv' => 'required|boolean',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->szul_ido = $validatedData['szul_ido'];
+        $user->jogosultsag = $validatedData['jogosultsag'];
+        $user->aktiv = $validatedData['aktiv'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->save();
+        return response()->json(['message' => 'Sikeres regisztráció'], 201);
     }
 
     public function show($user_id, $j_id)
     {
         $user = User::where('user_id', $user_id)
-        ->where('j_id',$j_id)->get();
+            ->where('jogosultsag', $j_id)->get();
         return $user[0];
     }
     public function destroy($user_id, $j_id)
     {
-       User::where('user_id', $user_id)
-        ->where('j_id',$j_id)
-        
-        ->delete();
+        User::where('user_id', $user_id)
+            ->where('jogosultsag', $j_id)
+
+            ->delete();
     }
-   
-    public function update(Request $request, $user_id, $j_id)
+
+    public function update(Request $request, $user_id)
     {
-        $user=User::find($user_id);
-        $user->$this->show($user_id, $j_id);
-        $user ->user_id=$request->user_id;
+        $user = User::find($user_id);
+
+        $user->user_id = $request->user_id;
         $user->name = $request->name;
         $user->szul_ido = $request->szul_ido;
-        $user->jogosultsag =$request->jogosultsag;
+        $user->jogosultsag = $request->jogosultsag;
         $user->aktiv = $request->aktiv;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
     }
+    public function userTable()
+    {
+        $userList = DB::table('users')
+            ->select('user_id', 'name', 'szul_ido', 'jogosultsag', 'aktiv', 'email','password')
+            ->join('jogosultsags', 'jogosultsag', '=', 'j_id')
+            ->get();
+        return $userList;
+    }
 }
-

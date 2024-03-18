@@ -31,7 +31,7 @@ Route::put('user/{user_id}', [UserController::class, 'update']);
 Route::get('/ingatlans', [IngatlanController::class, 'index']);
 Route::post('ingatlans', [IngatlanController::class, 'store']);
 Route::delete('ingatlans/{ing_id}', [IngatlanController::class, 'destroy']);
-Route::put('ingatlans/{ingw_id}', [IngatlanController::class, 'update']);
+Route::put('ingatlans/{ing_id}', [IngatlanController::class, 'update']);
 
 Route::get('/telepules', [TelepulesController::class, 'index']);
 
@@ -41,3 +41,4 @@ Route::get('/ingfutestipus',[IngatlanFutesTipusController::class, 'index']);
 
 //lekérdezések:
 Route::get('/ingatlanKartyaLista',[IngatlanController::class, 'ingatlanKartya']);
+Route::get('/userTablaLista',[UserController::class, 'userTable']);
