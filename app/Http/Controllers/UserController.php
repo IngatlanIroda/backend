@@ -18,7 +18,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'szul_ido' => 'required|date_format:Y_m_d',
-            'jogosultsag' => 'required|in:1,2',
+            'jogosultsag' => 'required|in:user,admin',
             'aktiv' => 'required|boolean',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
@@ -34,18 +34,14 @@ class UserController extends Controller
         return response()->json(['message' => 'Sikeres regisztráció'], 201);
     }
 
-    public function show($user_id, $j_id)
-    {
-        $user = User::where('user_id', $user_id)
-            ->where('jogosultsag', $j_id)->get();
-        return $user[0];
+    public function show($user_id){
+          
+        $user = response()->json(User::find($user_id));
+        return $user;
     }
-    public function destroy($user_id, $j_id)
+    public function destroy($user_id)
     {
-        User::where('user_id', $user_id)
-            ->where('jogosultsag', $j_id)
-
-            ->delete();
+        User::find($user_id)->delete();
     }
 
     public function update(Request $request, $user_id)
@@ -65,7 +61,7 @@ class UserController extends Controller
     {
         $userList = DB::table('users')
             ->select('user_id', 'name', 'szul_ido', 'jogosultsag', 'aktiv', 'email','password')
-            ->join('jogosultsags', 'jogosultsag', '=', 'j_id')
+            
             ->get();
         return $userList;
     }

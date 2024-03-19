@@ -27,10 +27,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard'); 
 
 Route::middleware('auth.basic')->group(function () {
-    Route::get('/jogosultsags', [JogosultsagController::class, 'index']);
+   
     Route::apiResource('/api/users', UserController::class);
     Route::post('user', [UserController::class, 'store']);
-
+    Route::delete('user/{user_id}', [UserController::class, 'destroy']);
+    Route::put('user/{user_id}', [UserController::class, 'update']);
 }); 
 Route::get('/ingatlans', [IngatlanController::class, 'index']);
 //lekérdezések:

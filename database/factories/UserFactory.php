@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'szul_ido'=> fake()->date('Y-m-d'),
             //'jogosultsag' =>Jogosultsag::all()->random()->j_id,
-            'jogosultsag' =>2,
+            'jogosultsag' =>'user',
             'aktiv'=>fake()->boolean,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

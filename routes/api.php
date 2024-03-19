@@ -35,7 +35,7 @@ Route::put('ingatlans/{ing_id}', [IngatlanController::class, 'update']);
 
 Route::get('/telepules', [TelepulesController::class, 'index']);
 
-Route::get('/jogosultsags',[JogosultsagController::class, 'index']);
+
 
 Route::get('/ingfutestipus',[IngatlanFutesTipusController::class, 'index']);
 

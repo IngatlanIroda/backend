@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id('user_id');
             $table->string('name');
             $table->date('szul_ido')->nullable();
-            $table->foreignId('jogosultsag')
-                ->references('j_id')
-                ->on('jogosultsags')->default(1);
+            $table->string('jogosultsag')
+                ->default('user');
             $table->boolean('aktiv')->default(true);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -30,7 +29,7 @@ return new class extends Migration
         User::create([
             'name' => 'Alexa',
             'szul_ido' => '1998-03-12',
-            'jogosultsag' => '1',
+            'jogosultsag' => 'admin',
 
             'aktiv' => true,
             'email' => 'alexa@gmail.com',
@@ -41,7 +40,7 @@ return new class extends Migration
         User::create([
             'name' => 'Bea',
             'szul_ido' => '1998-01-01',
-            'jogosultsag' => '1',
+            'jogosultsag' => 'admin',
 
             'aktiv' => true,
             'email' => 'teszt@gmail.com',
