@@ -24,14 +24,14 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('user', [UserController::class, 'store']);
-Route::delete('user/{user_id}', [UserController::class, 'destroy']);
-Route::put('user/{user_id}', [UserController::class, 'update']);
+Route::post('/user', [UserController::class, 'store']);
+Route::delete('/user/{user_id}', [UserController::class, 'destroy']);
+Route::put('/user/{user_id}', [UserController::class, 'update']);
 
 Route::get('/ingatlans', [IngatlanController::class, 'index']);
-Route::post('ingatlans', [IngatlanController::class, 'store']);
-Route::delete('ingatlans/{ing_id}', [IngatlanController::class, 'destroy']);
-Route::put('ingatlans/{ing_id}', [IngatlanController::class, 'update']);
+Route::post('/ingatlans', [IngatlanController::class, 'store']);
+Route::delete('/ingatlans/{ing_id}', [IngatlanController::class, 'destroy']);
+Route::put('/ingatlans/{ing_id}', [IngatlanController::class, 'update']);
 
 Route::get('/telepules', [TelepulesController::class, 'index']);
 
