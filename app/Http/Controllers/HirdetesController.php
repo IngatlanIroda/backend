@@ -15,7 +15,7 @@ class HirdetesController extends Controller
 
     } 
 
- 
+
 
     public function show($id){ 
 
