@@ -15,9 +15,9 @@ class ArvaltozasController extends Controller
 
  
 
-    public function show($hirdetes_id, $meddig){ 
+    public function show($ing_id, $meddig){ 
 
-        $pricechange =  Arvaltozas::where('hirdetes_id', $hirdetes_id) 
+        $pricechange =  Arvaltozas::where('ing_id', $ing_id) 
 
                         ->where('meddig',"=", $meddig) 
 
@@ -36,7 +36,7 @@ class ArvaltozasController extends Controller
 
         $pricechange = new Arvaltozas(); 
 
-        $pricechange->hirdetes_id = $request->hirdetes_id; 
+        $pricechange->ing_id = $request->ing_id; 
 
         $pricechange->meddig = $request->meddig; 
 
@@ -49,11 +49,11 @@ class ArvaltozasController extends Controller
 
  
 
-    public function update(Request $request,$hirdetes_id, $meddig){ 
+    public function update(Request $request,$ing_id, $meddig){ 
 
-        $pricechange = $this->show($hirdetes_id, $meddig); 
+        $pricechange = $this->show($ing_id, $meddig); 
 
-        $pricechange->hirdetes_id = $request->hirdetes_id; 
+        $pricechange->ing_id = $request->ing_id; 
 
         $pricechange->meddig = $request->meddig; 
 
@@ -66,9 +66,9 @@ class ArvaltozasController extends Controller
 
  
 
-    public function destroy($hirdetes_id, $meddig){ 
+    public function destroy($ing_id, $meddig){ 
 
-        $this->show($hirdetes_id, $meddig)->delete(); 
+        $this->show($ing_id, $meddig)->delete(); 
 
     } 
 }

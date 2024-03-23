@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Ingatlan;
 use App\Models\Ingatlan_futes_tipus;
 use App\Models\Telepules;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -30,7 +31,19 @@ class IngatlanFactory extends Factory
             'szobaszam'=>rand(1,15),
             'telepules' => Telepules::all()->random()->telepules_id,
             'cim'=>fake('hu_HU')->address(),
-            'leiras'=>fake('hu_HU')->paragraph()
+            'leiras'=>fake('hu_HU')->paragraph(),
+            'ugytipus' => '1',
+            'user' => User::all()->random()->user_id,
+            'hird_feladas_datuma'=>fake()->date(),
+            'hird_lejarata' => fake()->date(),
+            'utolso_modositas_datuma' => fake()->date(),
+            'ar' => rand(10000000,90000000) 
         ];
+        
     }
+
+
+
+ 
+
 }

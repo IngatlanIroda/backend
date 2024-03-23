@@ -14,7 +14,7 @@ class Arvaltozas extends Model
 
         $query 
 
-            ->where('hirdetes_id', '=', $this->getAttribute('hirdetes_id')) 
+            ->where('ing_id', '=', $this->getAttribute('ing_id')) 
 
             ->where('meddig', '=', $this->getAttribute('meddig')); 
 
@@ -24,7 +24,7 @@ class Arvaltozas extends Model
     } 
 
     protected $fillable = [
-        'hirdetes_id',
+        'ing_id',
         'meddig',
         'regi_ar'
     ];

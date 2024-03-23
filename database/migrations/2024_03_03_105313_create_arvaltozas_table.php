@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('arvaltozas', function (Blueprint $table) {
-            $table->primary(['hirdetes_id', 'meddig']);
-            $table->foreignId('hirdetes_id')->references('hirdetes_id')->on('hirdetes'); 
+            $table->primary(['ing_id', 'meddig']);
+            $table->foreignId('ing_id')->references('ing_id')->on('ingatlans'); 
             $table->date('meddig');
             $table->integer('regi_ar');
             $table->timestamps();

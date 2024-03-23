@@ -14,7 +14,11 @@ class Ingatlan extends Model
         'futes_tipus',
         'nagysag',
         'telepules',
-        'cim'
+        'cim',
+        'ugytipus',
+        'user',
+        'hird_feladas_datuma',
+        'ar'
     ];
     //Az ingatlan_futes_tipus tábla több eleme is kapcsolódhat a típushoz
     //elérés: $tipus->Ingatlan_futes_tipus::find(1)->tipus;
