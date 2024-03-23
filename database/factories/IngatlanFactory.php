@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ingatlan;
 use App\Models\Ingatlan_futes_tipus;
 use App\Models\Telepules;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class IngatlanFactory extends Factory
 {
+    protected $model = Ingatlan::class;
     /**
      * Define the model's default state.
      *
@@ -18,9 +20,12 @@ class IngatlanFactory extends Factory
      */
     public function definition(): array
     {
+        $ingTipus = Ingatlan_futes_tipus::where('kategoria', 'i')->inRandomOrder()->first();
+        $futesTipus = Ingatlan_futes_tipus::where('kategoria', 'f')->inRandomOrder()->first();
+
         return [
-            'ing_tipus' => Ingatlan_futes_tipus::all()->random()->tipus_id,
-            'futes_tipus' => Ingatlan_futes_tipus::all()->random()->tipus_id,
+            'ing_tipus' => $ingTipus->tipus_id,
+            'futes_tipus' => $futesTipus->tipus_id,
             'nagysag'=>rand(10,300),
             'szobaszam'=>rand(1,15),
             'telepules' => Telepules::all()->random()->telepules_id,
