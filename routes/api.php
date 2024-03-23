@@ -39,13 +39,13 @@ Route::get('/dashboard', function () {
 Route::get('ingatlans', [IngatlanController::class, 'index']);
 Route::get('ingatlans/{id}', [IngatlanController::class, 'show']);
 // ingatlan lekérdezések
-Route::get('ingatlanKartyaLista',[IngatlanController::class, 'ingatlanKartya']);
+Route::get('ingatlanKartyaLista', [IngatlanController::class, 'ingatlanKartya']);
 
 //telepules
 Route::get('telepules', [TelepulesController::class, 'index']);
 
 //ingatlan_futes_tipus
-Route::get('ingfutestipus',[IngatlanFutesTipusController::class, 'index']);
+Route::get('ingfutestipus', [IngatlanFutesTipusController::class, 'index']);
 
 //ingatlan_futes_tipus lekérdezések
 Route::get('ingatlanFutesTipus', [IngatlanFutesTipusController::class, 'index']);
@@ -85,20 +85,22 @@ Route::post('bemutatas', [IngatlanController::class, 'store']);
 Route::delete('bemutatas/{ing_id}/{bemutatas_datuma}', [IngatlanController::class, 'destroy']);
 Route::put('bemutatas/{ing_id}/{bemutatas_datuma}', [IngatlanController::class, 'update']);
 
-//web.php-ből importálva:
 
-Route::middleware('auth.basic')->group(function () {
 
-    // Route::apiResource('user', UserController::class);
+Route::middleware('auth')->group(function () {
+
+
     Route::get('me', [UserController::class, 'me']);
+    Route::middleware(['admin'])->group(function () {
 
-    Route::get('user', [UserController::class, 'index']);
-    Route::get('user/{id}', [UserController::class, 'show']);
-    Route::post('user', [UserController::class, 'store']);
-    Route::put('user/{user_id}', [UserController::class, 'update']);
-    Route::delete('user/{user_id}', [UserController::class, 'destroy']);
-    //lekérdezések:
-    Route::get('userTablaLista',[UserController::class, 'userTable']);
+        Route::get('user', [UserController::class, 'index']);
+        Route::get('user/{id}', [UserController::class, 'show']);
+        Route::post('user', [UserController::class, 'store']);
+        Route::put('user/{user_id}', [UserController::class, 'update']);
+        Route::delete('user/{user_id}', [UserController::class, 'destroy']);
+        //lekérdezések:
+        Route::get('userTablaLista', [UserController::class, 'userTable']);
+    });
 
     // ingatlanok
     Route::post('ingatlans', [IngatlanController::class, 'store']);
@@ -106,4 +108,4 @@ Route::middleware('auth.basic')->group(function () {
     Route::put('ingatlans/{ing_id}', [IngatlanController::class, 'update']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
