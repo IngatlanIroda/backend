@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
-            'szul_ido' => 'required|date_format:Y_m_d',
+            'szul_ido' => 'required|date_format:Y-m-d',
             'jogosultsag' => 'required|in:user,admin',
             'aktiv' => 'required|boolean',
             'email' => 'required|email|unique:users',

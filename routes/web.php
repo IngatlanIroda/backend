@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IngatlanController;
+use App\Http\Controllers\IngatlanFutesTipusController;
 use App\Http\Controllers\JogosultsagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,21 +28,27 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard'); 
 
 Route::middleware('auth.basic')->group(function () {
-   
+
+    Route::get('/user/{id}', [UserController::class, 'show']);
+
     Route::apiResource('/api/users', UserController::class);
     Route::post('user', [UserController::class, 'store']);
     Route::delete('user/{user_id}', [UserController::class, 'destroy']);
     Route::put('user/{user_id}', [UserController::class, 'update']);
 }); 
 Route::get('/ingatlans', [IngatlanController::class, 'index']);
+Route::get('/ingatlanFutesTipus', [IngatlanFutesTipusController::class, 'index']);
+
 //lekérdezések:
 Route::get('/ingatlanKartyaLista',[IngatlanController::class, 'ingatlanKartya']);
 Route::get('/userTablaLista',[UserController::class, 'userTable']);
 
 
 
-Route::post('user', [UserController::class, 'store']);
+
+
+/* Route::post('user', [UserController::class, 'store']);
 Route::delete('user/{user_id}', [UserController::class, 'destroy']);
-Route::put('user/{user_id}', [UserController::class, 'update']);
+Route::put('user/{user_id}', [UserController::class, 'update']); */
 
 require __DIR__.'/auth.php';
