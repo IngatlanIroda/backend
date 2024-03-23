@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IngatlanController;
+use App\Http\Controllers\IngatlanFutesTipusController;
 use App\Http\Controllers\JogosultsagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,25 +24,10 @@ Route::get('/token', function () {
     return request()->session()->token();
 });
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); 
-
-Route::middleware('auth.basic')->group(function () {
-   
-    Route::apiResource('/api/users', UserController::class);
-    Route::post('user', [UserController::class, 'store']);
-    Route::delete('user/{user_id}', [UserController::class, 'destroy']);
-    Route::put('user/{user_id}', [UserController::class, 'update']);
-}); 
-Route::get('/ingatlans', [IngatlanController::class, 'index']);
-//lekérdezések:
-Route::get('/ingatlanKartyaLista',[IngatlanController::class, 'ingatlanKartya']);
-Route::get('/userTablaLista',[UserController::class, 'userTable']);
+    return '{}';
+    // return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-Route::post('user', [UserController::class, 'store']);
-Route::delete('user/{user_id}', [UserController::class, 'destroy']);
-Route::put('user/{user_id}', [UserController::class, 'update']);
 
 require __DIR__.'/auth.php';
