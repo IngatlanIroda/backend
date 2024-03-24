@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\IngatlanController;
 use App\Http\Controllers\IngatlanFutesTipusController;
-use App\Http\Controllers\JogosultsagController;
+
 use App\Http\Controllers\TelepulesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -91,8 +91,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('me', [UserController::class, 'me']);
     Route::middleware(['admin'])->group(function () {
-        Route::get('ingatlans', [IngatlanController::class, 'index']);
-        Route::get('ingatlans/{id}', [IngatlanController::class, 'show']);
+       
         Route::get('user', [UserController::class, 'index']);
         Route::get('user/{id}', [UserController::class, 'show']);
         Route::post('user', [UserController::class, 'store']);
@@ -103,6 +102,8 @@ Route::middleware('auth')->group(function () {
     });
 
     // ingatlanok
+    Route::get('ingatlans', [IngatlanController::class, 'index']);
+    Route::get('ingatlans/{id}', [IngatlanController::class, 'show']);
     Route::post('ingatlans', [IngatlanController::class, 'store']);
     Route::delete('ingatlans/{ing_id}', [IngatlanController::class, 'destroy']);
     Route::put('ingatlans/{ing_id}', [IngatlanController::class, 'update']);

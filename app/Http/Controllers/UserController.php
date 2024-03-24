@@ -42,7 +42,14 @@ class UserController extends Controller
     }
     public function destroy($user_id)
     {
-        User::find($user_id)->delete();
+        $user=User::find($user_id);
+        if(!$user->aktiv){
+            $user->delete();
+            return response()->json(['success' => true, 'message' => 'Felhasználó sikeresen törölve!']);
+        }else {
+            return response()->json(['success' => false, 'message' => 'Csak nem aktív felhasználót lehet törölni!']); 
+        }
+       
     }
 
     public function update(Request $request, $user_id)
