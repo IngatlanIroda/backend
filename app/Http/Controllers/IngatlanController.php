@@ -76,5 +76,24 @@ public function ingatlanKartya()
     ->get();
     return $kartyaList;
 }
+public function ingatlanFutesTipusok(){
+    $tipusTabla =DB::select(
+        "SELECT 
+        ingatlans.ing_id, 
+        ing_tipus.tipus_megnevezes AS ing_tipus_megnevezes, 
+        ing_tipus.kategoria AS ing_tipus_kategoria, 
+        futes_tipus.tipus_megnevezes AS futes_tipus_megnevezes, 
+        futes_tipus.kategoria AS futes_tipus_kategoria 
+    FROM 
+        ingatlans 
+    LEFT JOIN 
+        ingatlan_futes_tipuses AS ing_tipus 
+        ON ingatlans.ing_tipus = ing_tipus.tipus_id 
+    LEFT JOIN 
+        ingatlan_futes_tipuses AS futes_tipus 
+        ON ingatlans.futes_tipus = futes_tipus.tipus_id;"
+    );
+    return $tipusTabla;
+}
 
 }
