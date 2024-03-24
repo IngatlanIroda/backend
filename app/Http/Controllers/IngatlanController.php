@@ -8,43 +8,66 @@ use Illuminate\Support\Facades\DB;
 
 class IngatlanController extends Controller
 {
-    public function index()
-    {
-        return response()->json(Ingatlan::all());
-    }
-    
-    public function store(Request $request)
-    {
-      (new Ingatlan())->fill($request->all())->save();
-    }
 
-    public function show($ing_id, $tipus_id, $telepules_id)
-    {
-        $ingatlan = Ingatlan::where('ing_id', $ing_id)
-        ->where('ing_tipus_id', $tipus_id)
-        ->where('futes_tipus_id', $tipus_id)
-        ->where('telepules', $telepules_id)
-        ->get();
-        return $ingatlan[0];
-    }
-    public function destroy($ing_id, $tipus_id, $telepules_id)
-    {
-       Ingatlan::where('ing_id', $ing_id)
-        ->where('ing_tipus_id', $tipus_id)
-        ->where('futes_tipus_id', $tipus_id)
-        ->where('telepules', $telepules_id)
-        ->delete();
-    }
-   
-    public function update(Request $request, $ing_id, $ing_tipus_id, $futes_tipus_id, $telepules_id)
-    {
-        $ingatlan=Ingatlan::find($ing_id);
-        $ingatlan->$this->show($ing_id, $ing_tipus_id, $futes_tipus_id, $telepules_id);
-        $ingatlan->fill($request->all());
-        $ingatlan->save();
-    }
+public function index(){ 
+    $ingatlans = response()->json(Ingatlan::all()); 
+    return $ingatlans; 
+} 
 
-    public function ingatlanKartya()
+public function show($id){ 
+    $ingatlan = response()->json(Ingatlan::find($id)); 
+    return $ingatlan; 
+} 
+
+public function store(Request $request){ 
+    $ingatlan = new Ingatlan(); 
+    $ingatlan->ing_tipus = $request->ing_tipus; 
+    $ingatlan->futes_tipus = $request->futes_tipus; 
+    $ingatlan->nagysag = $request->nagysag; 
+    $ingatlan->szobaszam = $request->szobaszam; 
+    $ingatlan->erkely = $request->erkely; 
+    $ingatlan->terasz = $request->terasz; 
+    $ingatlan->kert = $request->kert; 
+    $ingatlan->telepules = $request->telepules; 
+    $ingatlan->cim = $request->cim; 
+    $ingatlan->leiras = $request->leiras; 
+    $ingatlan->ugytipus = $request->ugytipus; 
+    $ingatlan->user = $request->user; 
+    $ingatlan->hird_feladas_datuma = $request->hird_feladas_datuma; 
+    $ingatlan->hird_lejarata = $request->hird_lejarata;
+    $ingatlan->utolso_modositas_datuma = $request->utolso_modositas_datuma;
+    $ingatlan->ar = $request->ar; 
+    $ingatlan->save(); 
+} 
+
+
+public function update(Request $request, $id){ 
+    $ingatlan = Ingatlan::find($id); 
+    $ingatlan->ing_tipus = $request->ing_tipus; 
+    $ingatlan->futes_tipus = $request->futes_tipus; 
+    $ingatlan->nagysag = $request->nagysag; 
+    $ingatlan->szobaszam = $request->szobaszam; 
+    $ingatlan->erkely = $request->erkely; 
+    $ingatlan->terasz = $request->terasz; 
+    $ingatlan->kert = $request->kert; 
+    $ingatlan->telepules = $request->telepules; 
+    $ingatlan->cim = $request->cim; 
+    $ingatlan->leiras = $request->leiras; 
+    $ingatlan->ugytipus = $request->ugytipus; 
+    $ingatlan->user = $request->user; 
+    $ingatlan->hird_feladas_datuma = $request->hird_feladas_datuma; 
+    $ingatlan->hird_lejarata = $request->hird_lejarata;
+    $ingatlan->utolso_modositas_datuma = $request->utolso_modositas_datuma;
+    $ingatlan->ar = $request->ar; 
+    $ingatlan->save(); 
+} 
+
+public function destroy($id){ 
+    Ingatlan::find($id)->delete(); 
+} 
+
+
+public function ingatlanKartya()
 {
     $kartyaList = DB::table('ingatlans' )
     ->select ('ing_id','telepules_megnevezes', 'kategoria','tipus_megnevezes', 'nagysag','szobaszam', 'leiras', 'cim','erkely','terasz','kert')
@@ -53,4 +76,5 @@ class IngatlanController extends Controller
     ->get();
     return $kartyaList;
 }
+
 }
