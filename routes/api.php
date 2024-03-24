@@ -36,6 +36,8 @@ Route::get('/dashboard', function () {
 //user
 
 //ingatlans
+Route::get('ingatlans', [IngatlanController::class, 'index']);
+Route::get('ingatlans/{id}', [IngatlanController::class, 'show']);
 
 // ingatlan lekérdezések
 Route::get('ingatlanKartyaLista', [IngatlanController::class, 'ingatlanKartya']);
@@ -91,7 +93,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('me', [UserController::class, 'me']);
     Route::middleware(['admin'])->group(function () {
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> c46fcba07367c5a0cc2ad83b0bfe627e2e0f6de5
         Route::get('user', [UserController::class, 'index']);
         Route::get('user/{id}', [UserController::class, 'show']);
         Route::post('user', [UserController::class, 'store']);
