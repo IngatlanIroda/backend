@@ -33,8 +33,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-//user
-
 //ingatlans
 Route::get('ingatlans', [IngatlanController::class, 'index']);
 Route::get('ingatlans/{id}', [IngatlanController::class, 'show']);
@@ -90,22 +88,18 @@ Route::delete('bemutatas/{ing_id}/{bemutatas_datuma}', [IngatlanController::clas
 Route::put('bemutatas/{ing_id}/{bemutatas_datuma}', [IngatlanController::class, 'update']);
 
 
+//user
 
-Route::middleware('auth')->group(function () {
+Route::get('users', [UserController::class, 'index']);
+Route::get('users/{id}', [UserController::class, 'show']);
+Route::post('users', [UserController::class, 'store']);
+Route::put('users/{user_id}', [UserController::class, 'update']);
+Route::delete('users/{user_id}', [UserController::class, 'destroy']);
+//lekérdezések:
+Route::get('userTablaLista', [UserController::class, 'userTable']);
 
 
-    Route::get('me', [UserController::class, 'me']);
-    Route::middleware(['admin'])->group(function () {
-        Route::get('user', [UserController::class, 'index']);
-        Route::get('user/{id}', [UserController::class, 'show']);
-        Route::post('user', [UserController::class, 'store']);
-        Route::put('user/{user_id}', [UserController::class, 'update']);
-        Route::delete('user/{user_id}', [UserController::class, 'destroy']);
-        //lekérdezések:
-        Route::get('userTablaLista', [UserController::class, 'userTable']);
-    });
 
-    
-});
+
 
 require __DIR__ . '/auth.php';
