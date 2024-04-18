@@ -59,13 +59,6 @@ Route::post('ingatlans', [IngatlanController::class, 'store']);
 Route::delete('ingatlans/{ing_id}', [IngatlanController::class, 'destroy']);
 Route::put('ingatlans/{ing_id}', [IngatlanController::class, 'update']);
 
-//hiredetes
-Route::get('hirdetes', [IngatlanController::class, 'index']);
-Route::get('hirdetes/{hirdetes_id}', [IngatlanController::class, 'show']);
-Route::post('hirdetes', [IngatlanController::class, 'store']);
-Route::delete('hirdetes/{hirdetes_id}', [IngatlanController::class, 'destroy']);
-Route::put('hirdetes/{hirdetes_id}', [IngatlanController::class, 'update']);
-
 //arvaltozas
 Route::get('arvaltozas', [IngatlanController::class, 'index']);
 Route::get('arvaltozas/{hirdetes_id}/{meddig}', [IngatlanController::class, 'show']);
