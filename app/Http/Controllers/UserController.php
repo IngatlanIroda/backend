@@ -55,7 +55,7 @@ class UserController extends Controller
             $user->delete();
             return response()->json(['success' => true, 'message' => 'Felhasználó sikeresen törölve!']);
         } else {
-            return response()->json(['success' => false, 'message' => 'Aktív felhasználót lehet törölni!']);
+            return response()->json(['success' => false, 'message' => 'Aktív felhasználót nem lehet törölni!']);
         }
     }
 

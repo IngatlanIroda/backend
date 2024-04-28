@@ -41,10 +41,18 @@ return new class extends Migration
             'name' => 'Bea',
             'szul_ido' => '1998-01-01',
             'jogosultsag' => 'admin',
-
             'aktiv' => true,
             'email' => 'teszt@gmail.com',
             'password' => Hash::make('blabla'),
+
+        ]);
+        User::create([
+            'name' => 'Gyongyi',
+            'szul_ido' => '1998-01-01',
+            'jogosultsag' => 'user',
+            'aktiv' => true,
+            'email' => 'gyongyi@gmail.com',
+            'password' => Hash::make('blablabla'),
 
         ]);
     }

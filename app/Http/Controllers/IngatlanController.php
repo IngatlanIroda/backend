@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class IngatlanController extends Controller
 {
-
 public function index(){ 
     $ingatlans = response()->json(Ingatlan::all()); 
     return $ingatlans; 
@@ -70,7 +69,8 @@ public function destroy($id){
 public function ingatlanKartya()
 {
     $kartyaList = DB::table('ingatlans' )
-    ->select ('ing_id','telepules_megnevezes', 'kategoria','tipus_megnevezes', 'nagysag','szobaszam', 'leiras', 'cim','erkely','terasz','kert')
+    ->select ('ing_id','telepules_megnevezes', 'kategoria','tipus_megnevezes', 'nagysag','szobaszam', 
+        'leiras', 'cim','erkely','terasz','kert')
     ->join('ingatlan_futes_tipuses', 'ing_tipus', '=','tipus_id')
     ->join ('telepules', 'telepules','=','telepules_id')
     ->get();

@@ -20,12 +20,6 @@ class Ingatlan extends Model
         'hird_feladas_datuma',
         'ar'
     ];
-    //Az ingatlan_futes_tipus tábla több eleme is kapcsolódhat a típushoz
-    //elérés: $tipus->Ingatlan_futes_tipus::find(1)->tipus;
-   /*  public function tipus()
-    {
-        return $this->hasMany(Ingatlan_futes_tipus::class,'tipus_id', 'tipus_id');
-    }
- */
+    
 }
 
